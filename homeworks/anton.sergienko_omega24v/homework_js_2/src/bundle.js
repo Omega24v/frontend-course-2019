@@ -10,10 +10,22 @@ const inputPhone = document.querySelector('#phone');
 const inputAge = document.querySelector('#age');
 
 // INPUTS FUNCTION VALIDATION
-const nameValidation = (text, min, max) => isValid.minLength(text, min) && isValid.maxLength(text, max);
-const emailValidation = (text, min) => isValid.email(text) && isValid.minLength(text, min);
-const phoneValidation = (text, min) => isValid.phone(text) && isValid.minLength(text, min);
-const ageValidation = (text, min, max) => (isValid.numberRange(text, min, max));
+const nameValidation = (text, min, max) => {
+    const isName = isValid.minLength(text, min) && isValid.maxLength(text, max);
+    return isName;
+};
+const emailValidation = (text, min) => {
+    const isEmail = isValid.email(text) && isValid.minLength(text, min);
+    return isEmail;
+};
+const phoneValidation = (text, min) => {
+    const isPhone = isValid.phone(text) && isValid.minLength(text, min);
+    return isPhone;
+};
+const ageValidation = (text, min, max) => {
+    const isAgeValidation = isValid.numberRange(text, min, max);
+    return isAgeValidation;
+};
 
 // ERROR FIELDS
 const formLabel = document.querySelectorAll('.form__label');
