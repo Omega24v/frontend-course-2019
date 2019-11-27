@@ -1,0 +1,34 @@
+@import vars
+@import default
+@import fonts
+
+body
+    min-width: 320px
+    font-size: $main-font-size
+    font-family: $main-font-family
+    font-weight: $main-font-weight
+    line-height: 1.7
+    color: #000
+
+.say-hello
+    min-height: 926px
+    padding-top: 65px
+    header
+        grid-template-columns: 1fr auto
+        grid-column-gap: 15px
+        line-height: 0
+        .navbar .navbar-toggler
+            border: none
+            background-color: transparent
+    h1
+        margin-top: 200px
+        text-align: center
+        text-shadow: 4px 8px 10px rgba(0, 0, 0, .24)
+        letter-spacing: 2.7px
+        color: #505050
+        span
+            padding: 5px 10px
+            background-color: #76f4ea
+    .btn
+        margin: 150px auto 0
+        max-width: 232px

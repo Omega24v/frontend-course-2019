@@ -1,33 +1,57 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // eslint-disable-line
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // eslint-disable-line
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // eslint-disable-line
 
 module.exports = {
     mode: 'development',
-    entry: './src/bundle.js',
+    entry: './src/js/app.js',
     output: {
-        path: path.resolve(__dirname, 'bundle'),
-        filename: 'bundle.js',
+        filename: 'js/[name].js',
+        path: path.resolve(__dirname, 'dist'),
     },
     module: {
         rules: [
             {
                 test: /\.(scss|sass)$/,
-                use: ExtractTextPlugin.extract(
+                use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/,
+                use: [
                     {
-                        fallback: 'style-loader',
-                        use: ['css-loader', 'sass-loader'],
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'img',
+                        },
                     },
-                ),
+                ],
+            },
+            {
+                test: /\.(woff|woff2|ttf|otf|eot)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts',
+                            publicPath: '../fonts',
+                        },
+                    },
+                ],
             },
         ],
     },
     plugins: [
-        new CleanWebpackPlugin(),
-        new ExtractTextPlugin(
-            { filename: 'style.css' },
-        ),
+        // new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: './css/[name].css',
+        }),
+        new CopyWebpackPlugin([
+            { from: './src/img', to: 'img' },
+        ]),
         new HtmlWebpackPlugin({
             inject: false,
             hash: false,
