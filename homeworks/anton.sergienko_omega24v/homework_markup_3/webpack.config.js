@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // eslint-disable-line
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // eslint-disable-line
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin'); // eslint-disable-line
 const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // eslint-disable-line
 
 module.exports = {
